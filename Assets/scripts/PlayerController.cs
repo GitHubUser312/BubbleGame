@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb = null;
     void Awake()
     {
-        playerInput = new PlayerInput();
-        move = playerInput.Player.Move;
         rb = GetComponent<Rigidbody2D>();
         input = new PlayerInput();
         moveAction = input.Player.Move;
