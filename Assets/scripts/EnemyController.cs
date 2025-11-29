@@ -31,7 +31,8 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("exit!");
+        Destroy(gameObject);
+        Instantiate(popEffect, transform.position, Quaternion.identity);
     }
 
     IEnumerator TakeDamage(int damage, int delay)
