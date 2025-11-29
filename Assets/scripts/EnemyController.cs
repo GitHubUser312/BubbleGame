@@ -19,7 +19,9 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // facing the player
         Vector2 direction = (transform.position - player.transform.position).normalized;
+        //rigid.linearVelocity = -direction * speed;
         rigid.MovePosition(rigid.position - direction * speed * Time.fixedDeltaTime);
     }
     // Update is called once per frame
