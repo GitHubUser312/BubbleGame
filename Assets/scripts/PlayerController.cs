@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
         moveAction.Disable();
     }
 
-        // Update is called once per frame
-        void Update()
+    // Update is called once per frame
+    void Update()
     {
         // Move Action
         // moveInput.x = a/d or left/right
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         // moveInput = left jobstick / d-pad
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
 
-        Debug.Log("Player moveInput : "+moveInput);
+        Debug.Log("Player moveInput : " + moveInput);
 
         //Vector2 fwd = rb.transform.forward;
 
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 moveVelocity = moveInput * fspeed;
 
-        Debug.Log("Player moveVelocity : " +  moveVelocity);
+        Debug.Log("Player moveVelocity : " + moveVelocity);
 
         rb.linearVelocity = moveVelocity;
         //rb.angularVelocity = 0.0f;
