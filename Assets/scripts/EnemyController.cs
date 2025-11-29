@@ -14,6 +14,10 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D rigid;
     void Awake()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
         rigid = GetComponent<Rigidbody2D>();    
     }
 
