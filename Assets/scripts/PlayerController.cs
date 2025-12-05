@@ -29,6 +29,12 @@ public class PlayerController : MonoBehaviour
         moveAction.Disable();
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Debug.Log("left!");
+        GameManager.Instance.GameOver();
+        Destroy(gameObject);
+    }
     // Update is called once per frame
     void Update()
     {

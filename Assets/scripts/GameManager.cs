@@ -2,15 +2,22 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameObject winGameUI;
+    public static GameManager Instance { get; private set; }
+    private void Awake()
     {
-        
-    }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-    // Update is called once per frame
-    void Update()
+        Instance = this;
+
+        DontDestroyOnLoad(gameObject);
+    }
+    public void GameOver()
     {
-        
+        winGameUI.SetActive(true);
     }
 }
