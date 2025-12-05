@@ -14,10 +14,21 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb = null;
 
+    private ProgressBar ProgressBar = null;
+
+    // Can the player use their freeze abililty?
+    [SerializeField]
+    private bool freezePower = false;
+    // timer to disable ability. Should enable ability at 0.0f
+    [SerializeField]
+    private float freezeCoolDown = 0.0f;
+
+    private RaycastHit2D[] hits = null;
+
     // Delta time tracking
     private float localDelta = 0.0f;
     // Can be used to log only once per second
-    private bool deltaWait = false;
+    private bool localDeltaWait = false;
     // local int for delta time tracking
     private int localInt = 0;
     void Awake()
@@ -27,6 +38,7 @@ public class PlayerController : MonoBehaviour
         moveAction = input.Player.Move;
         freezeAction = input.Player.FreezeAbility;
         freezeAction.performed += OnSpecicialButtonPressed;
+        //ProgressBar = GameObject.FindGameObjectWithTag("FreezeCooldown").GetComponent<ProgressBar>();
     }
 
     private void OnEnable()
@@ -67,19 +79,19 @@ public class PlayerController : MonoBehaviour
         //rb.angularVelocity = 0.0f;
 
         localDelta += Time.deltaTime;
-        // Logs every second
+        // Updates every second
         if ((int)localDelta > localInt)
         {
             ++localInt;
-            Debug.Log($"Delta(int): {(int)localDelta} | DeltaTime: {Time.deltaTime} | Player moveVelocity: {moveVelocity}");
-            deltaWait = true;
+            localDeltaWait = true;
         }
 
-
-        if (deltaWait)
+        // Debug logs
+        if (localDeltaWait && true)
         {
-
+            Debug.Log($"Delta(int): {(int)localDelta} | DeltaTime: {Time.deltaTime} | Player moveVelocity: {moveVelocity}");
         }
+
 
         // old input system; unity will complain
         //if(UnityEngine.Input.GetKeyDown(KeyCode.Space))
@@ -88,12 +100,26 @@ public class PlayerController : MonoBehaviour
         //}
 
         // Must be at the end of this Update
-        if (deltaWait) { deltaWait = false; }
+        if (localDeltaWait) { localDeltaWait = false; }
     }
 
     void OnSpecicialButtonPressed(InputAction.CallbackContext context)
     {
         Debug.Log("Special Button Pressed");
+        // player hits space and uses freeze
+
+        hits = Physics2D.CircleCastAll(transform.position, 50.0f, Vector2.zero);
+
+        //ResetFreezeCooldown(ProgressBar );
+
+        for (int i = 0; i < hits.Length; ++i)
+        {
+            EnemyController enemy = hits[i].collider.GetComponent<EnemyController>();
+            if (enemy != null)
+            {
+                FreezeArea(enemy);
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -102,10 +128,20 @@ public class PlayerController : MonoBehaviour
         v2.y = 10;
         v2.x = 10;
 
-        Debug.Log("Player OnCollisionEnter2D with " + collision.gameObject.name);
-        // bounce away from enemy
-        rb.linearVelocity = (-rb.linearVelocity * 20) - v2;
+        //Debug.Log("Player OnCollisionEnter2D with " + collision.gameObject.name);
+        // bounce away from enemy // does not work
+        //rb.linearVelocity = (-rb.linearVelocity * 20) - v2;
     }
 
+    private void FreezeArea(EnemyController enemy)
+    {
+        Debug.Log("Freezing Enemy: " + enemy.ToSafeString());
+        enemy.FreezeEnemy();
+    }
 
+    private void ResetFreezeCooldown(ProgressBar pb)
+    {
+        // freeze cooldown logic
+        pb.Reset();
+    }
 }
