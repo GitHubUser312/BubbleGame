@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb = null;
 
-    private ProgressBar ProgressBar = null;
+
 
     // Can the player use their freeze abililty?
     [SerializeField]
@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     // timer to disable ability. Should enable ability at 0.0f
     [SerializeField]
     private float freezeCoolDown = 0.0f;
+
+    private float maxFreezeCoolDown = 6.0f;
 
     private RaycastHit2D[] hits = null;
 
@@ -90,8 +92,14 @@ public class PlayerController : MonoBehaviour
         if (localDeltaWait && true)
         {
             Debug.Log($"Delta(int): {(int)localDelta} | DeltaTime: {Time.deltaTime} | Player moveVelocity: {moveVelocity}");
+            Debug.Log($"Freeze Cooldown: {freezeCoolDown}");
         }
 
+        if (freezeCoolDown > 0.0f)
+        {
+            freezeCoolDown -= Time.deltaTime;
+            Mathf.Clamp(freezeCoolDown, 0.0f, maxFreezeCoolDown);
+        }
 
         // old input system; unity will complain
         //if(UnityEngine.Input.GetKeyDown(KeyCode.Space))
@@ -108,18 +116,24 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Special Button Pressed");
         // player hits space and uses freeze
 
-        hits = Physics2D.CircleCastAll(transform.position, 50.0f, Vector2.zero);
-
-        //ResetFreezeCooldown(ProgressBar );
-
-        for (int i = 0; i < hits.Length; ++i)
+        if (freezeCoolDown <= 0)
         {
-            EnemyController enemy = hits[i].collider.GetComponent<EnemyController>();
-            if (enemy != null)
+            hits = Physics2D.CircleCastAll(transform.position, 50.0f, Vector2.zero);
+
+            //ResetFreezeCooldown(ProgressBar );
             {
-                FreezeArea(enemy);
+                for (int i = 0; i < hits.Length; ++i)
+                {
+                    EnemyController enemy = hits[i].collider.GetComponent<EnemyController>();
+                    if (enemy != null)
+                    {
+                        FreezeArea(enemy);
+                    }
+                }
             }
+            freezeCoolDown = maxFreezeCoolDown;
         }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
