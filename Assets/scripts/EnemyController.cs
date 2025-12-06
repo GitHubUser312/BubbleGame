@@ -74,8 +74,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Destroy(gameObject);
-        Instantiate(popEffect, transform.position, Quaternion.identity);
+        Die();
     }
 
     public void FreezeEnemy()
@@ -114,7 +113,6 @@ public class EnemyController : MonoBehaviour
             rb.MovePosition(rb.position - speed * Time.fixedDeltaTime * direction);
         }
     }
-
     IEnumerator TakeDamage(int damage, int delay)
     {
         health -= damage;
@@ -125,6 +123,7 @@ public class EnemyController : MonoBehaviour
     {
         Destroy(gameObject);
         Instantiate(popEffect, transform.position, Quaternion.identity);
+        ScoreManager.Instance.AddScore(1);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
