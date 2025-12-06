@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject winGameUI;
+    public GameObject bigBubble;
     public ProgressBar progressBar;
     public static GameManager Instance { get; private set; }
 
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
     }
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
@@ -34,6 +35,18 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-        winGameUI.SetActive(true);
+        if (winGameUI != null)
+        {
+            winGameUI.SetActive(true);
+        }
+        if (bigBubble != null)
+        {
+            var spawner = bigBubble.GetComponent<EnemySpawner>();
+
+            if (spawner != null)
+            {
+                spawner.enabled = false;
+            }
+        }
     }
 }

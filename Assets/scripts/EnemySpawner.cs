@@ -11,10 +11,11 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Spawn"), SerializeField]
     GameObject enemies;
-
+    
     [SerializeField]
     int fTimer = 2;
 
+    private Coroutine spawnCoroutine;
     void OnDrawGizmosSelected() 
     {
         Gizmos.color = gizmoColor;
@@ -24,7 +25,11 @@ public class EnemySpawner : MonoBehaviour
     {
         StartCoroutine(Spawn(fTimer));
     }
-
+    private void OnDisable()
+    {
+        if (spawnCoroutine != null)
+            StopCoroutine(spawnCoroutine);
+    }
     IEnumerator Spawn(float time)
     {
         while (true)

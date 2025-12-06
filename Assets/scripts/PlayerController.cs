@@ -57,9 +57,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("left!");
-        GameManager.Instance.GameOver();
-        Destroy(gameObject);
+        Die();
     }
     // Update is called once per frame
     void Update()
@@ -151,6 +149,12 @@ public class PlayerController : MonoBehaviour
         enemy.FreezeEnemy();
     }
 
+    private void Die()
+    {
+        Debug.Log("left!");
+        GameManager.Instance.GameOver();
+        Destroy(gameObject);
+    }
     private void ResetFreezeCooldown(ProgressBar pb)
     {
         // freeze cooldown logic

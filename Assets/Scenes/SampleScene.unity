@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   winGameUI: {fileID: 1123478419}
+  bigBubble: {fileID: 445950918}
   progressBar: {fileID: 885005200}
 --- !u!4 &434797005
 Transform:
@@ -248,7 +249,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434797003}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36825222125e3e244b0921ea6eb05072, type: 3}
   m_Name: 
@@ -774,7 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProgressBar
   image: {fileID: 372879543}
-  speed: 0.2
+  speed: 0.06
 --- !u!1 &1123478419
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,7 +788,7 @@ GameObject:
   - component: {fileID: 1123478422}
   - component: {fileID: 1123478421}
   m_Layer: 5
-  m_Name: text
+  m_Name: GameOverTxT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

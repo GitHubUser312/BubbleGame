@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -74,7 +75,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Die();
+        if (GameManager.Instance.bigBubble != null && !GameManager.Instance.bigBubble.IsDestroyed())
+        {
+            Die();
+        }
     }
 
     public void FreezeEnemy()
@@ -121,9 +125,12 @@ public class EnemyController : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
-        Instantiate(popEffect, transform.position, Quaternion.identity);
-        ScoreManager.Instance.AddScore(1);
+        if (!gameObject.IsDestroyed())
+        {
+            Instantiate(popEffect, transform.position, Quaternion.identity);
+            ScoreManager.Instance.AddScore(1);
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
