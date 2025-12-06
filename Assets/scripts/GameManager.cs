@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public static float GlobalDelta { get; private set;  }
     // Global delta time as int (for testing purposes) // not yet implemented
     public static int GlobalDeltaInt { get; private set; }
+    [SerializeField]
+    private float maxFreezeCoolDown = 6.0f;
+    public float MaxFreezeCoolDown { get { return maxFreezeCoolDown; } }
 
     private void Update()
     {
