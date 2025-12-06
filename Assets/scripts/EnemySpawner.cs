@@ -13,9 +13,15 @@ public class EnemySpawner : MonoBehaviour
     GameObject enemies;
     
     [SerializeField]
-    int fTimer = 2;
-
-    private Coroutine spawnCoroutine;
+    float fTimer = 2;
+    [SerializeField]
+    float fCountDown = 0;
+    // Delta time tracking
+    private float localDelta = 0.0f;
+    // Can be used to log only once per second
+    private bool localDeltaWait = false;
+    // local int for delta time tracking
+    private int localInt = 0;
     void OnDrawGizmosSelected() 
     {
         Gizmos.color = gizmoColor;
@@ -23,12 +29,41 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(Spawn(fTimer));
+        //StartCoroutine(Spawn(fTimer));
     }
-    private void OnDisable()
+
+    private void Update()
     {
-        if (spawnCoroutine != null)
-            StopCoroutine(spawnCoroutine);
+        fTimer -= Time.deltaTime / 10;
+        fTimer = Mathf.Clamp(fTimer, 0.1f, 10);
+
+        localDelta += Time.deltaTime;
+        // Updates every second
+        if ((int)localDelta > localInt)
+        {
+            ++localInt;
+            localDeltaWait = true;
+        }
+
+        if (fCountDown <= 0)
+        {
+            Vector2 rand = Random.insideUnitCircle * detectionRadius;
+            Instantiate(enemies, rand, Quaternion.identity);
+            fCountDown = fTimer;
+        }
+        else
+        {
+            fCountDown -= Time.deltaTime;
+        }
+
+            // debug
+            if (localDeltaWait)
+        {
+            Debug.Log("Spawner Timer: " + fTimer);
+        }
+
+        // Must be at the end of this Update
+        if (localDeltaWait) { localDeltaWait = false; }
     }
     IEnumerator Spawn(float time)
     {

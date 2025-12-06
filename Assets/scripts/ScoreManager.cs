@@ -8,7 +8,16 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance { get; private set; }
 
     private int currentScore;
+    public int CurrentScore { get { return currentScore; } }
     private int highScore;
+    public int HighScore { get { return highScore; } }
+
+    public void IncrementScore()
+    {
+        ++currentScore;
+        scoreTxt.text = "Score: " + currentScore;
+        Debug.Log("Score: " + currentScore);
+    }
 
     private void Awake()
     {
@@ -21,6 +30,8 @@ public class ScoreManager : MonoBehaviour
         Instance = this;
 
         DontDestroyOnLoad(gameObject);
+
+        scoreTxt = GameObject.Find("score").GetComponent<TextMeshProUGUI>();
     }
     void Start()
     {

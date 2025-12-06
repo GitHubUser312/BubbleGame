@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    enum State
-    {
-        Frozen,
-        Chasing,
-    }
-
     [SerializeField]
     private GameObject popEffect;
     [SerializeField]
@@ -25,7 +19,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private bool isFrozen = false;
     private Rigidbody2D rb;
-    State state = State.Chasing;
 
     // Delta time tracking
     private float localDelta = 0.0f;
@@ -102,7 +95,7 @@ public class EnemyController : MonoBehaviour
         else if (waitTimer != 0.0f) { waitTimer = 0.0f; }
         else if (speed == 0) { speed = 4; }
 
-        if (localDeltaWait && isFrozen) { Debug.Log("Enemy isFrozen waitTimer: " + waitTimer); }
+        //if (localDeltaWait && isFrozen) { Debug.Log("Enemy isFrozen waitTimer: " + waitTimer); }
 
 
     }

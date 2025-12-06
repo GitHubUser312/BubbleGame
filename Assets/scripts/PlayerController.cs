@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using UnityEngine.Windows;
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
@@ -20,8 +21,7 @@ public class PlayerController : MonoBehaviour
     // timer to disable ability. Should enable ability at 0.0f
     [SerializeField]
     private float freezeCoolDown = 0.0f;
-
-    private float maxFreezeCoolDown = 6.0f;
+    float maxFreezeCoolDown = 0.0f; // set from GameManager
 
     private RaycastHit2D[] hits = null;
 
@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
         freezeAction.performed += OnSpecicialButtonPressed;
         //ProgressBar = GameObject.FindGameObjectWithTag("FreezeCooldown").GetComponent<ProgressBar>();
     }
-
     private void OnEnable()
     {
         input.Enable();
@@ -76,6 +75,8 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = moveVelocity;
         //rb.angularVelocity = 0.0f;
 
+        if (maxFreezeCoolDown == 0.0f) { maxFreezeCoolDown = GameManager.Instance.MaxFreezeCoolDown; }
+
         localDelta += Time.deltaTime;
         // Updates every second
         if ((int)localDelta > localInt)
@@ -87,8 +88,8 @@ public class PlayerController : MonoBehaviour
         // Debug logs
         if (localDeltaWait && true)
         {
-            Debug.Log($"Delta(int): {(int)localDelta} | DeltaTime: {Time.deltaTime} | Player moveVelocity: {moveVelocity}");
-            Debug.Log($"Freeze Cooldown: {freezeCoolDown}");
+            //Debug.Log($"Delta(int): {(int)localDelta} | DeltaTime: {Time.deltaTime} | Player moveVelocity: {moveVelocity}");
+            //Debug.Log($"Freeze Cooldown: {freezeCoolDown}");
         }
 
         if (freezeCoolDown > 0.0f)
@@ -109,8 +110,8 @@ public class PlayerController : MonoBehaviour
 
     void OnSpecicialButtonPressed(InputAction.CallbackContext context)
     {
-        Debug.Log("Special Button Pressed");
         // player hits space and uses freeze
+        //Debug.Log("Special Button Pressed");
 
         if (freezeCoolDown <= 0)
         {
