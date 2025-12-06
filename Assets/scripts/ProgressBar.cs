@@ -20,7 +20,7 @@ public class ProgressBar : MonoBehaviour
         image.fillAmount = value;
     }
 
-    public void Reset()
+    public void ResetBar()
     {
         value = 0f;
     }

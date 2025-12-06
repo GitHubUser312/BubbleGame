@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject winGameUI;
+    public ProgressBar progressBar;
     public static GameManager Instance { get; private set; }
 
     // Global delta time accessible for other scripts // not yet implemented

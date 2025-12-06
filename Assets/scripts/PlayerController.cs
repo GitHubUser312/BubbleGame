@@ -14,8 +14,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb = null;
 
-
-
     // Can the player use their freeze abililty?
     [SerializeField]
     private bool freezePower = false;
@@ -120,7 +118,7 @@ public class PlayerController : MonoBehaviour
         {
             hits = Physics2D.CircleCastAll(transform.position, 50.0f, Vector2.zero);
 
-            //ResetFreezeCooldown(ProgressBar );
+            ResetFreezeCooldown(GameManager.Instance.progressBar);
             {
                 for (int i = 0; i < hits.Length; ++i)
                 {
@@ -156,6 +154,6 @@ public class PlayerController : MonoBehaviour
     private void ResetFreezeCooldown(ProgressBar pb)
     {
         // freeze cooldown logic
-        pb.Reset();
+        pb.ResetBar();
     }
 }
