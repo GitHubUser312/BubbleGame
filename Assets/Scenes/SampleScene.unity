@@ -401,8 +401,9 @@ MonoBehaviour:
   detectionRadius: 4.7
   gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   enemies: {fileID: 1947323556790588934, guid: 7cdce17c036a5f64f9bd3d2fde4325af, type: 3}
-  fTimer: 4
+  fTimer: 2
   fCountDown: 0
+  fMinTimer: 0.5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,7 +1320,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -154.9135, y: -18.3032}
+  m_AnchoredPosition: {x: -154.91345, y: -18.303223}
   m_SizeDelta: {x: 309.8269, y: 36.6065}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1573288564
