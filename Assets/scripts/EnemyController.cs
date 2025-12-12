@@ -39,18 +39,6 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         ChasePlayer();
-        //switch (state)
-        //{
-        //    case State.Frozen:
-        //        Frozen();
-        //        break;
-        //    case State.Chasing:
-        //        ChasePlayer();
-        //        break;
-        //    default:
-        //        Debug.LogError("Unknown state!");
-        //        break;
-        //}
 
         localDelta += Time.deltaTime;
         // Updates every second

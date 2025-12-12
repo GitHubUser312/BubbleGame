@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    
-    [Header("Gizmo"), SerializeField] 
+
+    [Header("Gizmo"), SerializeField]
     float detectionRadius = 1f;
     [SerializeField] Color gizmoColor = Color.yellow;
 
     [Header("Spawn"), SerializeField]
     GameObject enemies;
-    
+
     [SerializeField]
-    float fTimer = 2;
+    float fTimer = 3;
     [SerializeField]
     float fCountDown = 0;
+    [SerializeField]
+    float fMinTimer = 0.5f;
     // Delta time tracking
     private float localDelta = 0.0f;
     // Can be used to log only once per second
     private bool localDeltaWait = false;
     // local int for delta time tracking
     private int localInt = 0;
-    void OnDrawGizmosSelected() 
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = gizmoColor;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
@@ -35,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         fTimer -= Time.deltaTime / 10;
-        fTimer = Mathf.Clamp(fTimer, 0.1f, 10);
+        fTimer = Mathf.Clamp(fTimer, fMinTimer, 10);
 
         localDelta += Time.deltaTime;
         // Updates every second
@@ -56,8 +58,8 @@ public class EnemySpawner : MonoBehaviour
             fCountDown -= Time.deltaTime;
         }
 
-            // debug
-            if (localDeltaWait)
+        // debug
+        if (localDeltaWait)
         {
             Debug.Log("Spawner Timer: " + fTimer);
         }
