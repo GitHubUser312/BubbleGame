@@ -6,7 +6,7 @@ public class ProgressBar : MonoBehaviour
     [SerializeField]
     public float speed = 0.2f;       // How fast the bar increases (per second)
 
-    private float value = 0f;        // Current value (0–1)
+    private float value = 1f;        // Current value (0–1)
     void Update()
     {
         speed = 1 / GameManager.Instance.MaxFreezeCoolDown;
