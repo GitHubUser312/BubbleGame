@@ -16,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
     float fTimer = 2;
     [SerializeField]
     float fCountDown = 0;
+    [SerializeField]
+    float fMinTimer = 0.2f;
     // Delta time tracking
     private float localDelta = 0.0f;
     // Can be used to log only once per second
@@ -35,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         fTimer -= Time.deltaTime / 10;
-        fTimer = Mathf.Clamp(fTimer, 0.1f, 10);
+        fTimer = Mathf.Clamp(fTimer, fMinTimer, 10);
 
         localDelta += Time.deltaTime;
         // Updates every second

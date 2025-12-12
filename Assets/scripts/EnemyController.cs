@@ -121,7 +121,7 @@ public class EnemyController : MonoBehaviour
         if (!gameObject.IsDestroyed())
         {
             Instantiate(popEffect, transform.position, Quaternion.identity);
-            ScoreManager.Instance.AddScore(1);
+            ScoreManager.Instance.IncrementScore();
             Destroy(gameObject);
         }
     }
