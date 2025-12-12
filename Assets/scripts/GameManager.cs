@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         GlobalDeltaInt = (int)GlobalDelta;
 
         // random line
-        Debug.DrawLine(Vector3.zero, Vector3.one * 10, Color.red);
+        //Debug.DrawLine(Vector3.zero, Vector3.one * 10, Color.red);
     }
     private void Awake()
     {
