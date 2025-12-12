@@ -135,6 +135,13 @@ MonoBehaviour:
   popEffect: {fileID: 6313151232004057007, guid: f12e1ba9b2dfe2848adb551de99a3012, type: 3}
   player: {fileID: 0}
   speed: 5
+  freezeTime: 3
+  waitTimer: 0
+  isFrozen: 0
+  audios:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!58 &8403141246713615732
 CircleCollider2D:
   m_ObjectHideFlags: 0

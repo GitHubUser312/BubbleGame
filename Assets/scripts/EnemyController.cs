@@ -118,12 +118,15 @@ public class EnemyController : MonoBehaviour
 
     void Die()
     {
-        if (!gameObject.IsDestroyed())
-        {
-            Instantiate(popEffect, transform.position, Quaternion.identity);
-            ScoreManager.Instance.AddScore(1);
-            Destroy(gameObject);
-        }
+        // play sound
+        string[] pops = { "Pop1", "Pop2", "Pop3" };
+
+        AudioManager.instance.Play(pops[Random.Range(0, pops.Length)]);
+            
+           // other logic
+        Instantiate(popEffect, transform.position, Quaternion.identity);
+        ScoreManager.Instance.AddScore(1);
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

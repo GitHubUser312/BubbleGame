@@ -7,17 +7,11 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI highScoreTxt;
     public static ScoreManager Instance { get; private set; }
 
+    // Current Score
     private int currentScore;
-    public int CurrentScore { get { return currentScore; } }
-    private int highScore;
-    public int HighScore { get { return highScore; } }
 
-    public void IncrementScore()
-    {
-        ++currentScore;
-        scoreTxt.text = "Score: " + currentScore;
-        Debug.Log("Score: " + currentScore);
-    }
+    // High Score
+    private int highScore;
 
     private void Awake()
     {
@@ -30,22 +24,24 @@ public class ScoreManager : MonoBehaviour
         Instance = this;
 
         DontDestroyOnLoad(gameObject);
-
-        scoreTxt = GameObject.Find("score").GetComponent<TextMeshProUGUI>();
-    }
-    void Start()
-    {
-        highScore = PlayerPrefs.GetInt("HighScore", 0);
-
     }
     public void AddScore(int amount)
     {
         currentScore += amount;
+        highScore = currentScore;
+        UpdateScore();
 
         if (currentScore > highScore)
         {
             highScore = currentScore;
             PlayerPrefs.SetInt("HighScore", highScore);
+            highScoreTxt.text = "High Score: " + highScore;
         }
+    }
+
+    void UpdateScore()
+    {
+        scoreTxt.text = "Score: " + currentScore;
+        highScoreTxt.text = "HighScore: " + highScore;
     }
 }
