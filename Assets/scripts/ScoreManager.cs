@@ -15,6 +15,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
+        // Singleton
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -22,26 +23,29 @@ public class ScoreManager : MonoBehaviour
         }
 
         Instance = this;
-
         DontDestroyOnLoad(gameObject);
+
+        scoreTxt.text = "Score: " + currentScore;
+        highScoreTxt.text = "High Score: " + PlayerPrefs.GetInt("HighScore");
+
+        // Load high score
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
     }
+
     public void AddScore(int amount)
     {
         currentScore += amount;
-        highScore = currentScore;
-        UpdateScore();
+        scoreTxt.text = "Score: " + currentScore;
 
+        // Check for new high score
         if (currentScore > highScore)
         {
             highScore = currentScore;
             PlayerPrefs.SetInt("HighScore", highScore);
-            highScoreTxt.text = "High Score: " + highScore;
+            PlayerPrefs.Save();
         }
+
+        highScoreTxt.text = "High Score: " + highScore;
     }
 
-    void UpdateScore()
-    {
-        scoreTxt.text = "Score: " + currentScore;
-        highScoreTxt.text = "HighScore: " + highScore;
-    }
 }
