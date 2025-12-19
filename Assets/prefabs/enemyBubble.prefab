@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   popEffect: {fileID: 6313151232004057007, guid: f12e1ba9b2dfe2848adb551de99a3012, type: 3}
   player: {fileID: 0}
-  speed: 5
+  speed: 4
   freezeTime: 3
   waitTimer: 0
   isFrozen: 0

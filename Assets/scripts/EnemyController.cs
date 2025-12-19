@@ -34,6 +34,8 @@ public class EnemyController : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
         }
         rb = GetComponent<Rigidbody2D>();
+
+        speed = Random.Range(3, 6);
     }
 
     private void FixedUpdate()
@@ -114,6 +116,7 @@ public class EnemyController : MonoBehaviour
            // other logic
         Instantiate(popEffect, transform.position, Quaternion.identity);
         ScoreManager.Instance.AddScore(1);
+        GameManager.Instance.NumOfEnemies--;
         Destroy(gameObject);
     }
 

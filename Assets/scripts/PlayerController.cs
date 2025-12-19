@@ -101,6 +101,11 @@ public class PlayerController : MonoBehaviour
         //    Debug.Log("Space Key Pressed");
         //}
 
+        if (GameManager.Instance.IsGameOver)
+        {
+            Die();
+        }
+
         // Must be at the end of this Update
         if (localDeltaWait) { localDeltaWait = false; }
     }
@@ -149,7 +154,7 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("left!");
+        //Debug.Log("Die!");
         GameManager.Instance.GameOver();
         Destroy(gameObject);
     }
