@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public float CountdownToEndGame { get { return countdownToEndGame; } }
 
     private int numOfEnemies = 0;
-    public int NumOfEnemies { get { return numOfEnemies; } set { numOfEnemies = value; } } // TODO: add one when spawn enemy, subtract one when enemy is destroyed
+    public int NumOfEnemies { get { return numOfEnemies; } set { numOfEnemies = value; } }
 
     private void Update()
     {

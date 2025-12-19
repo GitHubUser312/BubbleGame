@@ -51,6 +51,7 @@ public class EnemySpawner : MonoBehaviour
         {
             Vector2 rand = Random.insideUnitCircle * detectionRadius;
             Instantiate(enemies, rand, Quaternion.identity);
+            GameManager.Instance.NumOfEnemies++;
             fCountDown = fTimer;
         }
         else
@@ -61,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
         // debug
         if (localDeltaWait)
         {
-            Debug.Log("Spawner Timer: " + fTimer);
+            //Debug.Log("Spawner Timer: " + fTimer);
         }
 
         // Must be at the end of this Update

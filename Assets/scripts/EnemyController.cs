@@ -116,6 +116,7 @@ public class EnemyController : MonoBehaviour
            // other logic
         Instantiate(popEffect, transform.position, Quaternion.identity);
         ScoreManager.Instance.AddScore(1);
+        GameManager.Instance.NumOfEnemies--;
         Destroy(gameObject);
     }
 
