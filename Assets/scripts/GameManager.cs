@@ -1,9 +1,11 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject winGameUI;
+    public GameObject warning; // apparently is null
     public GameObject bigBubble;
     public ProgressBar progressBar;
     public static GameManager Instance { get; private set; }
@@ -22,23 +24,35 @@ public class GameManager : MonoBehaviour
     private int numOfEnemies = 0;
     public int NumOfEnemies { get { return numOfEnemies; } set { numOfEnemies = value; } }
 
+    public bool IsGameOver { get; private set; } = false; // for the player controller
+
     private void Update()
     {
         GlobalDelta += Time.deltaTime;
         GlobalDeltaInt = (int)GlobalDelta;
-
+        
+        // countdown
         if (numOfEnemies > 50)
         {
             countdownToEndGame -= Time.deltaTime;
+            if(warning != null)
+            {
+                warning.SetActive(true);
+                warning.GetComponent<TextMeshProUGUI>().text = "WARNING: No more than 50 bubbles, ending player in" + ((int)countdownToEndGame).ToString() + "!";
+            }
         }
         else if (numOfEnemies <= 50)
         {
             countdownToEndGame = 10.0f;
+            if (warning != null)
+            {
+                warning.SetActive(false);
+            }
         }
 
         if (countdownToEndGame <= 0)
         {
-            GameOver();
+            IsGameOver = true; // The player controller will call GameOver()
         }
 
         // random line
