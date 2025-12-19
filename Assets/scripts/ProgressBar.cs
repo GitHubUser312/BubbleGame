@@ -10,7 +10,7 @@ public class ProgressBar : MonoBehaviour
     void Update()
     {
         speed = 1 / GameManager.Instance.MaxFreezeCoolDown;
-        // Increase value over time
+
         value += speed * Time.deltaTime;
 
         // Clamp to 0–1

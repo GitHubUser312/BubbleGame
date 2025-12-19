@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2786963902365209589}
   - component: {fileID: 1386036842669483437}
-  - component: {fileID: 4277655808287956778}
   - component: {fileID: -5885773571496620229}
-  - component: {fileID: 8403141246713615732}
+  - component: {fileID: -6604925736398916138}
+  - component: {fileID: -8957332618803055211}
   m_Layer: 0
   m_Name: enemyBubble
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.42, y: 2.09, z: 0}
-  m_LocalScale: {x: 0.6643091, y: 0.6643091, z: 0.6643091}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 0.77232575}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,8 +82,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 436068532722222212, guid: 96f537b560f4dc640b6bf75a439368d7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9137255}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -93,33 +93,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &4277655808287956778
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947323556790588934}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 4
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &-5885773571496620229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,11 +111,7 @@ MonoBehaviour:
   freezeTime: 3
   waitTimer: 0
   isFrozen: 0
-  audios:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!58 &8403141246713615732
+--- !u!58 &-6604925736398916138
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,5 +145,32 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.00000023841858, y: -0.00000047683716}
-  m_Radius: 0.5
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 7.54
+--- !u!50 &-8957332618803055211
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947323556790588934}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
