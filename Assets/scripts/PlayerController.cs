@@ -15,9 +15,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb = null;
 
-    // Can the player use their freeze abililty?
-    [SerializeField]
-    private bool freezePower = false;
     // timer to disable ability. Should enable ability at 0.0f
     [SerializeField]
     private float freezeCoolDown = 0.0f;
