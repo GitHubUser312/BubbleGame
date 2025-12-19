@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     // Global delta time as int (for testing purposes) // not yet implemented
     public static int GlobalDeltaInt { get; private set; }
     [SerializeField]
-    private float maxFreezeCoolDown = 50;
+    private float maxFreezeCoolDown = 10;
     public float MaxFreezeCoolDown { get { return maxFreezeCoolDown; } }
 
     private float countdownToEndGame = 10.0f;
@@ -26,6 +26,20 @@ public class GameManager : MonoBehaviour
     {
         GlobalDelta += Time.deltaTime;
         GlobalDeltaInt = (int)GlobalDelta;
+
+        if (numOfEnemies > 50)
+        {
+            countdownToEndGame -= Time.deltaTime;
+        }
+        else if (numOfEnemies <= 50)
+        {
+            countdownToEndGame = 10.0f;
+        }
+
+        if (countdownToEndGame <= 0)
+        {
+            GameOver();
+        }
 
         // random line
         //Debug.DrawLine(Vector3.zero, Vector3.one * 10, Color.red);
