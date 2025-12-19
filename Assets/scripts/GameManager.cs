@@ -16,6 +16,12 @@ public class GameManager : MonoBehaviour
     private float maxFreezeCoolDown = 50;
     public float MaxFreezeCoolDown { get { return maxFreezeCoolDown; } }
 
+    private float countdownToEndGame = 10.0f;
+    public float CountdownToEndGame { get { return countdownToEndGame; } }
+
+    private int numOfEnemies = 0;
+    public int NumOfEnemies { get { return numOfEnemies; } set { numOfEnemies = value; } } // TODO: add one when spawn enemy, subtract one when enemy is destroyed
+
     private void Update()
     {
         GlobalDelta += Time.deltaTime;

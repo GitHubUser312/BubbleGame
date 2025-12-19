@@ -34,6 +34,8 @@ public class EnemyController : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
         }
         rb = GetComponent<Rigidbody2D>();
+
+        speed = Random.Range(3, 6);
     }
 
     private void FixedUpdate()
