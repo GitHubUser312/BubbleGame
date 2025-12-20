@@ -17,14 +17,14 @@ public class MainMenu : MonoBehaviour
     IEnumerator OpenLevel()
     {
         fader.SetBool("transition", true);
-        yield return new WaitForSeconds(1.7f);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     IEnumerator QuitGame()
     {
         fader.SetBool("transition", true);
-        yield return new WaitForSeconds(1.7f);
+        yield return new WaitForSeconds(1);
         Debug.Log("QUIT!");
         Application.Quit();
     }

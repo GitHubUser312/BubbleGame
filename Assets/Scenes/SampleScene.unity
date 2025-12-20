@@ -488,6 +488,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   scoreTxt: {fileID: 1513111076}
   highScoreTxt: {fileID: 1573288564}
+  currentScore: 0
+  highScore: 0
 --- !u!1 &438644432
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,7 +1234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &696172761
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1288,6 +1290,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOverMenu
   fader: {fileID: 1577368254}
+  scoreTxt: {fileID: 647330027}
+  highScoreTxt: {fileID: 1241781273}
 --- !u!82 &696172764
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2749,7 +2753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1577368253
 RectTransform:
   m_ObjectHideFlags: 0

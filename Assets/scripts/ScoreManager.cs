@@ -8,10 +8,10 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance { get; private set; }
 
     // Current Score
-    private int currentScore;
+    public int currentScore;
 
     // High Score
-    private int highScore;
+    public int highScore;
 
     private void Awake()
     {
