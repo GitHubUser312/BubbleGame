@@ -23,7 +23,6 @@ public class ScoreManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         scoreTxt.text = "Score: " + currentScore;
         highScoreTxt.text = "High Score: " + PlayerPrefs.GetInt("HighScore");

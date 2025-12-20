@@ -3,6 +3,7 @@ using System;
 using UnityEngine.Audio;
 using NUnit.Framework;
 using System.Collections.Generic;
+
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
@@ -18,13 +19,15 @@ public class AudioManager : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject); // optional but recommended
+        DontDestroyOnLoad(gameObject); 
     }
-
+    private void OnDestroy()
+    {
+        if (instance == this)
+            instance = null;
+    }
     public void Play(string name)
     {
-        //AudioSource source = audioSources[name];
-        //source.Play();
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {

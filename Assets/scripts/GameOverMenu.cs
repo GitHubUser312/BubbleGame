@@ -1,31 +1,33 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class MainMenu : MonoBehaviour
+
+public class GameOverMenu : MonoBehaviour
 {
-    public Animator fader;
-    public void Play()
+
+    [SerializeField] Animator fader;
+
+    public void Restart()
     {
-        StartCoroutine(OpenLevel());
+        StartCoroutine(RestartGame());
     }
-    // Update is called once per frame
+
     public void Quit()
     {
         StartCoroutine(QuitGame());
     }
 
-    IEnumerator OpenLevel()
+    IEnumerator RestartGame()
     {
         fader.SetBool("transition", true);
         yield return new WaitForSeconds(1.7f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     IEnumerator QuitGame()
     {
         fader.SetBool("transition", true);
         yield return new WaitForSeconds(1.7f);
-        Debug.Log("QUIT!");
-        Application.Quit();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

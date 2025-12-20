@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject winGameUI;
+    public GameObject gameOverUI;
+    public GameObject scoreUI;
     public GameObject warning; // apparently is null
     public GameObject bigBubble;
     public ProgressBar progressBar;
@@ -26,6 +27,16 @@ public class GameManager : MonoBehaviour
 
     public bool IsGameOver { get; private set; } = false; // for the player controller
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
     private void Update()
     {
         GlobalDelta += Time.deltaTime;
@@ -38,7 +49,7 @@ public class GameManager : MonoBehaviour
             if(warning != null)
             {
                 warning.SetActive(true);
-                warning.GetComponent<TextMeshProUGUI>().text = "WARNING: No more than 50 bubbles, ending player in" + ((int)countdownToEndGame).ToString() + "!";
+                warning.GetComponent<TextMeshProUGUI>().text = "WARNING: No more than 50 bubbles, ending player in " + ((int)countdownToEndGame).ToString() + "s !";
             }
         }
         else if (numOfEnemies <= 50)
@@ -55,27 +66,17 @@ public class GameManager : MonoBehaviour
             IsGameOver = true; // The player controller will call GameOver()
         }
 
-        // random line
-        //Debug.DrawLine(Vector3.zero, Vector3.one * 10, Color.red);
     }
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
 
-        Instance = this;
-
-        DontDestroyOnLoad(gameObject);
-    }
     public void GameOver()
     {
-        if (winGameUI != null)
+        if (gameOverUI != null && scoreUI != null)
         {
-            winGameUI.SetActive(true);
+            gameOverUI.SetActive(true);
+            scoreUI.SetActive(false);
         }
+
+
         if (bigBubble != null)
         {
             var spawner = bigBubble.GetComponent<EnemySpawner>();
@@ -85,5 +86,6 @@ public class GameManager : MonoBehaviour
                 spawner.enabled = false;
             }
         }
+
     }
 }
