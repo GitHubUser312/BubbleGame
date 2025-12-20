@@ -454,6 +454,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   gameOverUI: {fileID: 696172760}
+  CurrentScore: {fileID: 647330025}
+  highScore: {fileID: 1241781271}
   scoreUI: {fileID: 643444033}
   warning: {fileID: 88320830}
   bigBubble: {fileID: 445950918}

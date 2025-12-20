@@ -5,10 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject gameOverUI;
+    public GameObject CurrentScore;
+    public GameObject highScore;
     public GameObject scoreUI;
-    public GameObject warning; // apparently is null
+    public GameObject warning;
     public GameObject bigBubble;
     public ProgressBar progressBar;
+
     public static GameManager Instance { get; private set; }
 
     // Global delta time accessible for other scripts // not yet implemented
@@ -73,6 +76,8 @@ public class GameManager : MonoBehaviour
         if (gameOverUI != null && scoreUI != null)
         {
             gameOverUI.SetActive(true);
+            CurrentScore.GetComponent<TextMeshProUGUI>().text = "CurrentScore: " + ScoreManager.Instance.CurrentScore.ToString();
+            highScore.GetComponent<TextMeshProUGUI>().text = "HighestScore: " + ScoreManager.Instance.HighScore.ToString();
             scoreUI.SetActive(false);
         }
 

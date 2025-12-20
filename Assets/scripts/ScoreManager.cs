@@ -5,13 +5,18 @@ public class ScoreManager : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI scoreTxt;
     public TextMeshProUGUI highScoreTxt;
+
     public static ScoreManager Instance { get; private set; }
 
     // Current Score
     private int currentScore;
 
+    public int CurrentScore { get { return currentScore; } }
+
     // High Score
     private int highScore;
+
+    public int HighScore { get { return highScore; } }
 
     private void Awake()
     {
